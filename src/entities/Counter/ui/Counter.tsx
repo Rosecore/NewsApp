@@ -4,6 +4,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
 import { CounterActions } from '../model/slice/CounterSlice';
 import { StateSchema } from 'app/provider/StoreProvider/config/StateSchema';
+import { getCounterValue } from '../model/selectors/getCounterValue/getCounterValue';
 
 interface CounerProps{
     className?: string
@@ -11,18 +12,18 @@ interface CounerProps{
 
 const Counter = ({className}:CounerProps) => {
     const dispatch = useDispatch()
-    const counterValue = useSelector((state:StateSchema)=>state.counter.value)
+    const counterValue = useSelector(getCounterValue)
     const increment = () =>{
-        dispatch(CounterActions.increment)
+        dispatch(CounterActions.increment())
     }
     const decrement = () =>{
-        dispatch(CounterActions.decrement)
+        dispatch(CounterActions.decrement())
     }
     return (
         <div>
-            <h1>value</h1>
-            <Button onClick={increment}>increment</Button>
-            <Button onClick={decrement}>decrement</Button>
+            <h1 data-testid = "value-title">value = {counterValue}</h1>
+            <Button data-testid = "increment-btn" onClick={increment}>increment</Button>
+            <Button data-testid = "decrement-btn" onClick={decrement}>decrement</Button>
         </div>
     );
 };
