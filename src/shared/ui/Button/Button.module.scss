@@ -8,6 +8,9 @@
     background: none;
     outline: none;
 }
+.disabled{
+    opacity: 0.5;
+}
 .outline{
     padding: 10px 15px;
     border: 1px solid var(--primary-color);

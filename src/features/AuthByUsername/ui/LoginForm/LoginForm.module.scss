@@ -6,5 +6,10 @@
     margin-top: 10px;
 }
 .lognBtn{
-    margin-top: 15px auto;
+    margin-top: 15px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    background-color: var( --secondary-color);
+    height: 25px;
 }
