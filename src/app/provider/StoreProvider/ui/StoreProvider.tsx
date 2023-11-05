@@ -18,4 +18,6 @@ const StoreProvider = ({children, initialState} : StoreProps ) => {
 const store11 = createReduxStore()
 export type AppDispatch = typeof store11.dispatch
 
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+
 export default StoreProvider;
