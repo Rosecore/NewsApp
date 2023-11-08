@@ -2,5 +2,8 @@
     "Welcome to React":"Добро пожаловать в реакт",
     "Translate":"Перевод",
     "MainPage":"Основная страница",
-    "NotFoundPage":"Страница не найдена"
+    "NotFoundPage":"Страница не найдена",
+    "LoginForm" : "Выполнить вход",
+    "EnterUsername":"Пользователь:",
+    "EnterPassword":"Пароль:"
 }

@@ -16,9 +16,6 @@ export default {
 const Template: StoryFn<typeof PageError> = (args) => <PageError {...args} />;
 
 export const Light = Template.bind({});
-Light.args = {theme: Theme.LIGHT};
 
 export const Dark = Template.bind({});
-Dark.args = {theme: Theme.DARK};
-
 Dark.decorators = [ThemeDecorator];

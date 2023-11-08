@@ -1,7 +1,6 @@
-import { Link, LinkProps } from 'react-router-dom';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { Mods, classNames } from 'shared/lib/classNames/classNames';
 import cls from './Button.module.scss'
-import { ButtonHTMLAttributes, FC } from 'react';
+import { ButtonHTMLAttributes, memo } from 'react';
 
 export enum ThemeButton{
     CLEAR= 'clear',
@@ -24,11 +23,32 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     disabled?:boolean
 }
 
-export const Button: FC<ButtonProps> = (props) => {
-    const {className, children, theme, square, size, disabled, ...otherProps} = props
+export const Button = memo((props: ButtonProps) => {
+    const {
+        className,
+        children,
+        theme = ThemeButton.OUTLINE,
+        square,
+        disabled,
+        size = ButtonSize.M,
+        ...otherProps
+    } = props;
+
+    const mods: Mods = {
+        [cls[theme]]: true,
+        [cls.square]: square,
+        [cls[size]]: true,
+        [cls.disabled]: disabled,
+    };
+
     return (
-        <button className={classNames(cls.Button,{[cls.square] : square, [cls.disabled]:disabled},[className, cls[theme],cls[size]])}{...otherProps} disabled={disabled}>
+        <button
+            type="button"
+            className={classNames(cls.Button, mods, [className])}
+            disabled={disabled}
+            {...otherProps}
+        >
             {children}
         </button>
     );
-};
+});

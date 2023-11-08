@@ -19,11 +19,11 @@ export const Input = memo((props:InputProps) => {
     }
     const {className, value, onChange, type = 'text',placeholder} = props
     return (
-        <div>
+        <div className={classNames(cls.InputWrapper, {}, [className])}>
             {placeholder && (
                 <div className='placeholder'>{placeholder}</div>
             )}
-            <input className={classNames(cls.LoginForm,{},[className])} type={type}
+            <input className={classNames(cls.input,{},[className])} type={type}
                 value = {value}
                 onChange={onChangeHandler}/>
         </div>

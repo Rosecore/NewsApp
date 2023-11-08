@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { ExtraThunk } from 'app/provider/StoreProvider'
 import axios from 'axios'
 import { User, UserActions } from 'entities/User'
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localstorage'
@@ -7,11 +8,11 @@ interface LoginByUsernameProps{
     username:string,
     password:string
 }
-export const LoginByUsername = createAsyncThunk<User,LoginByUsernameProps,{ rejectValue: string }>(
+export const LoginByUsername = createAsyncThunk<User,LoginByUsernameProps,{ rejectValue: string , extra:ExtraThunk}>(
     'login/LoginByUsername',
     async (AuthData, thunkAPI) => {
         try {
-            const response = await axios.post<User>('http://localhost:8000/login', AuthData)
+            const response = await thunkAPI.extra.api.post<User>('/login', AuthData)
             if (!response){
                 throw new Error();
             }

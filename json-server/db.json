@@ -25,5 +25,14 @@
       "password": "123"
     }
   ],
-  "profile": { "name": "typicode" }
+  "profile": {
+    "first": "Mariya",
+    "lastname": "Reynsvort",
+    "age": 22,
+    "currency": "DIN",
+    "country": "Serbia",
+    "city": "Beograde",
+    "username": "admin",
+    "avatar": "https://ru.myanimeshelf.com/upload/dynamic/2011-04/05/sbddb2.jpg"
+  }
 }

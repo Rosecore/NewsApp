@@ -1,6 +1,8 @@
 .LoginForm{
     display: flex;
     flex-direction: column;
+    max-width: 400px;
+    justify-content: space-between;
 }
 .input{
     margin-top: 10px;
@@ -10,6 +12,8 @@
     border: none;
     border-radius: 10px;
     outline: none;
-    background-color: var( --secondary-color);
+    background-color: var(--primary-color);
     height: 25px;
+    font: var(--font-m);
+    color: var( --bg-color);
 }

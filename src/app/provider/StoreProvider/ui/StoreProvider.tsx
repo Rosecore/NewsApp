@@ -2,22 +2,32 @@ import React, { ReactNode } from 'react';
 import { Provider, useDispatch } from 'react-redux';
 import { createReduxStore } from '../config/store';
 import { StateSchema } from '../config/StateSchema';
+import { ReducersMapObject } from 'redux';
+import { useNavigate } from 'react-router-dom';
 
-interface StoreProps{
-    children?: ReactNode,
-    initialState? :StateSchema
+interface StoreProviderProps {
+    children?: ReactNode;
+    initialState?: DeepPartial<StateSchema>;
+    asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>
 }
-const StoreProvider = ({children, initialState} : StoreProps ) => {
-    const store = createReduxStore(initialState)
+
+export const StoreProvider = (props: StoreProviderProps) => {
+    const {
+        children,
+        initialState,
+        asyncReducers,
+    } = props;
+
+    const navigate = useNavigate();
+    const store = createReduxStore(
+        initialState as StateSchema,
+        asyncReducers as ReducersMapObject<StateSchema>,
+        navigate
+    );
+
     return (
-        <Provider store={store} >
+        <Provider store={store}>
             {children}
         </Provider>
     );
 };
-const store11 = createReduxStore()
-export type AppDispatch = typeof store11.dispatch
-
-export const useAppDispatch = () => useDispatch<AppDispatch>();
-
-export default StoreProvider;

@@ -1,7 +1,5 @@
 import { ReduxStoreWithManager, StateSchemaKey } from 'app/provider/StoreProvider/config/StateSchema';
-import { useAppDispatch } from 'app/provider/StoreProvider/ui/StoreProvider';
-import { LoginReducer } from 'features/AuthByUsername/model/slice/LoginSlice';
-import React, { ReactInstance, ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useStore } from 'react-redux';
 import { Reducer } from 'redux';
 
@@ -19,15 +17,15 @@ interface DynamicModuleLoaderProps{
 const DynamicModuleLoader = ({children,reducers}:DynamicModuleLoaderProps) => {
     const store = useStore() as ReduxStoreWithManager
     useEffect(()=>{
-        Object.entries(reducers).forEach(([name,reducer]:ReducersListEntry)=>{
-            store.reducerManager.add(name,reducer)
+        Object.entries(reducers).forEach(([name,reducer])=>{
+            store.reducerManager.add(name as StateSchemaKey,reducer)
         })
         return () =>{
-            Object.entries(reducers).forEach(([name,reducer]:ReducersListEntry)=>{
-                store.reducerManager.remove(name)
+            Object.entries(reducers).forEach(([name,reducer])=>{
+                store.reducerManager.remove(name as StateSchemaKey)
             })
         }
-    },[])
+    })
     return (
         <>
             {children}
