@@ -1,7 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from 'app/provider/themeProvider';
+import { ThemeDecoratorDark } from 'shared/config/storybook/ThemeDecorator/ThemeDecoratorDark/ThemeDecoratorDark';
 
 export default {
     title: 'shared/Text',
@@ -41,16 +40,16 @@ PrimaryDark.args = {
     title: 'Title lorem ipsun',
     text: 'Description Description Description Description',
 };
-PrimaryDark.decorators = [ThemeDecorator];
+PrimaryDark.decorators = [ThemeDecoratorDark];
 
 export const onlyTitleDark = Template.bind({});
 onlyTitleDark.args = {
     title: 'Title lorem ipsun',
 };
-onlyTitleDark.decorators = [ThemeDecorator];
+onlyTitleDark.decorators = [ThemeDecoratorDark];
 
 export const onlyTextDark = Template.bind({});
 onlyTextDark.args = {
     text: 'Description Description Description Description',
 };
-onlyTextDark.decorators = [ThemeDecorator];
+onlyTextDark.decorators = [ThemeDecoratorDark];

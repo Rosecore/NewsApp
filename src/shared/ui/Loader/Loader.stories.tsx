@@ -1,7 +1,5 @@
-import React from 'react';
-import { ComponentMeta, ComponentStory, Meta, StoryFn } from '@storybook/react';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from 'app/provider/themeProvider';
+import { Meta, StoryFn } from '@storybook/react';
+import { ThemeDecoratorDark } from 'shared/config/storybook/ThemeDecorator/ThemeDecoratorDark/ThemeDecoratorDark';
 import { Loader } from './Loader';
 
 export default {
@@ -23,5 +21,5 @@ Normal.args = {};
 export const Dark = Template.bind({});
 Dark.args = {
 };
-Dark.decorators = [ThemeDecorator];
+Dark.decorators = [ThemeDecoratorDark];
 

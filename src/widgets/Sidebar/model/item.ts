@@ -2,7 +2,8 @@ import { RoutePath } from "shared/config/routeconfig/routeconfig"
 
 export interface SidebarItemType{
     path:string,
-    text:string
+    text:string,
+    isAuthOnly?: boolean
 }
 
 export const SidebarItemList:SidebarItemType[] =  [{
@@ -20,6 +21,11 @@ export const SidebarItemList:SidebarItemType[] =  [{
 {
     path : RoutePath.profile,
     text : "Profile Page"
+},
+{
+    path : RoutePath.articles,
+    text : "Article",
+    isAuthOnly:true
 },
 ]
     

@@ -1,7 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { Modal } from 'shared/ui/Modal/Modal';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from 'app/provider/themeProvider';
+import { ThemeDecoratorDark } from 'shared/config/storybook/ThemeDecorator/ThemeDecoratorDark/ThemeDecoratorDark';
 
 export default {
     title: 'shared/Modal',
@@ -24,4 +23,4 @@ Dark.args = {
     isOpen: true,
     children: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid commodi consequatur eligendi impedit incidunt necessitatibus possimus quis saepe sunt totam.\n ',
 };
-Dark.decorators = [ThemeDecorator];
+Dark.decorators = [ThemeDecoratorDark];

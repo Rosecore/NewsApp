@@ -8,7 +8,6 @@ import './app/styles/index.scss'
 import { StoreProvider } from 'app/provider/StoreProvider'
 
 render(
-
     <BrowserRouter >
         <StoreProvider>
             <ErrorBoundary>

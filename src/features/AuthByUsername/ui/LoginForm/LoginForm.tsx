@@ -5,14 +5,14 @@ import { Button } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
 import { useSelector } from 'react-redux';
 import { LoginActions, LoginReducer } from '../../model/slice/LoginSlice';
-import { useCallback, memo } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { LoginByUsername } from '../../model/services/LoginByUsername/LoginByUsername';
 import { TextTheme, Text } from 'shared/ui/Text/Text';
 import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
 import { getLoginError } from    '../../model/selectors/getLoginError/getLoginError';
 import { getLoginIsLoading } from'../..//model/selectors/getLoginIsLoading/getLoginIsLoading';
-import DynamicModuleLoader, { ReducersList } from 'shared/lib/comonents/DynamicModuleLoader/DynamicModuleLoader';
+import {DynamicModuleLoader,  ReducersList } from 'shared/lib/comonents/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'app/provider/StoreProvider'
 //import { useAppDispatch } from '../../../../app/provider/StoreProvider';
 
@@ -21,16 +21,19 @@ const initialReducers:ReducersList = {
 }
 export interface LoginFormProps {
     className?: string,
-    onSucsess:()=>void
+    onSucsess?:()=>void
 }
 const LoginForm = memo(({className, onSucsess}:LoginFormProps) => {
     const {t} = useTranslation()
     const dispatch = useAppDispatch()
     const username = useSelector(getLoginUsername)
     const password = useSelector(getLoginPassword)
+   
     const error = useSelector(getLoginError)
     const isLoading = useSelector(getLoginIsLoading)
-
+    useEffect(()=>{
+        console.log(username,password)
+    })
 
     const onChangeUsername = useCallback((value:string) =>{
         dispatch(LoginActions.setUsername(value))
@@ -41,9 +44,10 @@ const LoginForm = memo(({className, onSucsess}:LoginFormProps) => {
     },[dispatch])
 
     const onLoginClick =  useCallback(async () =>{
+        //@ts-ignore
         const result = await dispatch(LoginByUsername({username,password}))
         if (result.meta.requestStatus ==='fulfilled'){
-            onSucsess();
+            onSucsess?.();
         }
     },[dispatch,password,username,onSucsess])
 

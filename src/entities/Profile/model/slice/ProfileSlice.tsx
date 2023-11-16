@@ -1,6 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { ProfileSchema } from '../types/profile'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { ProfileSchema, ProfileType } from '../types/profile'
 import { FetchProfileData } from '../services/fetchProfileData/fetchProfileData'
+import { User } from 'entities/User'
+import { setProfileData } from '../services/setProfileData/setProfileData'
 
 const initialState: ProfileSchema = {
     readonly:true,
@@ -12,7 +14,20 @@ export const ProfileSlice = createSlice({
     name:'Profile',
     initialState,
     reducers:{
-       
+        setReadonly: (state,action:PayloadAction<boolean>)=>{
+            state.readonly=action.payload
+        },
+        setNotReadonly: (state)=>{
+            state.readonly=true
+            state.form = state.data
+            state.validateError = undefined
+        },
+        updateProfile: (state,action:PayloadAction<ProfileType>)=>{
+            state.form = {
+                ...state.form, 
+                ...action.payload
+            }
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -23,10 +38,25 @@ export const ProfileSlice = createSlice({
             .addCase(FetchProfileData.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.data = action.payload
+                state.form = action.payload
             })
             .addCase(FetchProfileData.rejected, (state, action) => {
                 state.isLoading = false
                 state.error = action.payload
+            })
+            .addCase(setProfileData.pending, (state) => {
+                state.validateError = undefined;
+                state.isLoading = true
+            })
+            .addCase(setProfileData.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.data = action.payload
+                state.form = action.payload
+                state.validateError = undefined
+            })
+            .addCase(setProfileData.rejected, (state, action) => {
+                state.isLoading = false
+                state.validateError = action.payload
             })
     },
 })

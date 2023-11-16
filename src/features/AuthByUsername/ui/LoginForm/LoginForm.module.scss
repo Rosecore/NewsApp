@@ -7,13 +7,62 @@
 .input{
     margin-top: 10px;
 }
-.lognBtn{
-    margin-top: 15px;
+
+.lognBtn {
+    margin-top: 20px;
+    min-width: 150px;
+    min-height: 30px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    font-weight: 700;
+    color: var(--bg-color);
+    background: var(--secondary-color);
+    background: linear-gradient(90deg, var(--secondary-color) 0%, var(--secondary-color) 100%);
     border: none;
-    border-radius: 10px;
+    border-radius: 1000px;
+   // box-shadow: 12px 12px 24px var(--primary-color);
+    transition: all 0.3s ease-in-out 0s;
+    cursor: pointer;
     outline: none;
-    background-color: var(--primary-color);
-    height: 25px;
-    font: var(--font-m);
-    color: var( --bg-color);
-}
+    position: relative;
+    padding: 10px;
+    }
+  
+  
+  .lognBtn:hover, .lognBtn:focus {
+    color: var(--bg-color);
+    transform: translateY(-6px);
+  }
+  
+  .lognBtn::after {
+    content: '';
+    width: 30px; height: 30px;
+    border-radius: 100%;
+    border: 6px solid var(--secondary-color);
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ring 1.5s infinite;
+  }
+  
+  .lognBtn:hover::after, .lognBtn:focus::after {
+    animation: none;
+    display: none;
+  }
+  
+  @keyframes ring {
+    0% {
+      width: 30px;
+      height: 30px;
+      opacity: 1;
+    }
+    100% {
+      width: 100px;
+      height: 100px;
+      opacity: 0;
+    }
+  }
